@@ -30,14 +30,14 @@
           center: {lat: -33.865427, lng: 151.196123},
           mapTypeId: 'terrain'
         });
-        
+
         var script = document.createElement('script');
 
-        script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+        script.src = 'data.json';
         document.getElementsByTagName('head')[0].appendChild(script);
 
         map.data.setStyle(function(feature) {
-          var magnitude = feature.getProperty('mag');
+          var magnitude = feature.getProperty('woeid');
           return {
             icon: getCircle(magnitude)
           };
@@ -49,7 +49,7 @@
           path: google.maps.SymbolPath.CIRCLE,
           fillColor: 'red',
           fillOpacity: .2,
-          scale: Math.pow(2, magnitude) / 2,
+          scale: magnitude*0.001,
           strokeColor: 'white',
           strokeWeight: .5
         };
